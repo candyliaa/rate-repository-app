@@ -1,6 +1,16 @@
 import { TextInput, View, Pressable, StyleSheet } from 'react-native';
 import Text from './Text';
 import { useFormik } from 'formik';
+import * as yup from 'yup';
+
+const validationSchema = yup.object().shape({
+    username: yup
+        .string()
+        .required('Username is required'),
+    password: yup
+        .string()
+        .required('Password is required'),
+});
 
 const initialValues = {
     username: '',
@@ -36,29 +46,51 @@ const styles = StyleSheet.create({
         color: 'white',
         fontWeight: 'bold',
     },
+    invalidInput: {
+        borderWidth: 1,
+        borderRadius: 5,
+        borderColor: '#d73a4a',
+        paddingHorizontal: 15,
+        paddingVertical: 10,
+        height: 50,
+        width: 300,
+        alignItems: 'center',
+        marginBottom: 10
+    }
 })
 
 const SignInForm = ({ onSubmit }) => {
     const formik = useFormik({
         initialValues,
+        validationSchema,
         onSubmit,
     });
 
     return (
         <View style={styles.flexContainer}>
             <TextInput
-                style={styles.input}
+                style={[styles.input,
+                    formik.touched.username && formik.errors.username && styles.invalidInput
+                ]}
                 placeholder="Username"
                 value={formik.values.username}
                 onChangeText={formik.handleChange('username')}
             />
+            {formik.touched.username && formik.errors.username && (
+                <Text style={{ color: '#d73a4a' }}>{formik.errors.username}</Text>
+            )}
             <TextInput
-                style={styles.input}
+                style={[styles.input,
+                    formik.touched.password && formik.errors.password && styles.invalidInput
+                ]}
                 placeholder="Password"
                 value={formik.values.password}
                 onChangeText={formik.handleChange('password')}
                 secureTextEntry={true}
             />
+            {formik.touched.password && formik.errors.password && (
+                <Text style={{ color: '#d73a4a' }}>{formik.errors.password}</Text>
+            )}
             <Pressable onPress={formik.handleSubmit} style={styles.button}>
                 <Text style={styles.buttonText}>Sign in</Text>
             </Pressable>
