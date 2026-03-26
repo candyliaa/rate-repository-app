@@ -20,4 +20,12 @@ export const GET_REPOSITORIES = gql`
 }
 `;
 
-// other queries...
+export const SIGNED_IN = gql`
+  query {
+    me {
+      id
+      username
+    }
+  }
+
+`;
