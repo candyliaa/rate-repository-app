@@ -34,16 +34,16 @@ const checkLength = (count) => {
 
 const RepositoryItem = ({ item }) => {
     return (
-        <View style={styles.container}>
+        <View style={styles.container} testID="repositoryItem">
             <Image source={{ uri: item.ownerAvatarUrl }} style={styles.avatar} />
-            <Text fontWeight="bold">Full name: {item.fullName}</Text>
-            <Text color="textSecondary">Description: {item.description}</Text>
-            <Text style={styles.language}>Language: {item.language}</Text>
+            <Text fontWeight="bold">Full name: {item.fullName}{'\n'}</Text>
+            <Text color="textSecondary">Description: {item.description}{'\n'}</Text>
+            <Text style={styles.language}>Language: {item.language}{'\n'}</Text>
             <View style={styles.flexContainer}>
-                <Text fontWeight="bold">Stars: {checkLength(item.stargazersCount)}</Text>
-                <Text fontWeight="bold">Forks: {checkLength(item.forksCount)}</Text>
-                <Text fontWeight="bold">Reviews: {checkLength(item.reviewCount)}</Text>
-                <Text fontWeight="bold">Rating: {checkLength(item.ratingAverage)}</Text>
+                <Text fontWeight="bold">Forks: {checkLength(item.forksCount)}{'\n'}</Text>
+                <Text fontWeight="bold">Stars: {checkLength(item.stargazersCount)}{'\n'}</Text>
+                <Text fontWeight="bold">Rating: {checkLength(item.ratingAverage)}{'\n'}</Text>
+                <Text fontWeight="bold">Reviews: {checkLength(item.reviewCount)}{'\n'}</Text>
             </View>
         </View>
     )

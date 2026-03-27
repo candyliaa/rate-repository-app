@@ -13,6 +13,10 @@ const ItemSeparator = () => <View style={styles.separator} />;
 const RepositoryList = () => {
   const { repositories } = useRepositories();
 
+  return <RepositoryListContainer repositories={repositories} />;
+};
+
+export const RepositoryListContainer = ({ repositories }) => {
   console.log(repositories);
 
   const repositoryNodes = repositories
