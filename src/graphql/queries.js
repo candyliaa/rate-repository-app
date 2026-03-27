@@ -27,5 +27,20 @@ export const SIGNED_IN = gql`
       username
     }
   }
+`;
 
+export const SINGLE_REPO = gql`
+query Repository($id: ID!) {
+  repository(id: $id) {
+        id
+        fullName
+        description
+        language
+        forksCount
+        stargazersCount
+        ratingAverage
+        reviewCount
+        ownerAvatarUrl
+  }
+}
 `;
