@@ -4,6 +4,7 @@ import { Text, StyleSheet, View } from 'react-native';
 import { Route, Routes, Navigate } from 'react-router-native';
 import SignIn from './SignIn';
 import RepositoryContainer from './RepositoryContainer';
+import SubmitReview from './ReviewForm';
 
 const styles = StyleSheet.create({
   container: {
@@ -22,6 +23,7 @@ const Main = () => {
         <Route path="*" element={<Navigate to="/" replace />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/:id" element={<RepositoryContainer />} />
+        <Route path="/review" element={<SubmitReview />} />
       </Routes>
     </View>
   );

@@ -49,9 +49,12 @@ const AppBar = () => {
       <ScrollView horizontal contentContainerStyle={styles.tabContainer}>
         <AppBarTab text="Repositories" to="/" />
         {signed_in ? (
-          <Pressable onPress={onSignOut} style={styles.tab}>
+          <>
+            <Pressable onPress={onSignOut} style={styles.tab}>
             <Text style={styles.tabText}>Sign out</Text>
-          </Pressable>
+            </Pressable>
+          <AppBarTab text="Create a review" to="/review" />
+          </>
         ) : (
           <AppBarTab text="Sign in" to="/signin" />
         )}
